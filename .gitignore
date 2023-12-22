@@ -1,0 +1,18 @@
+node_modules/
+
+# Node.js
+node_modules/
+
+# Dependency directories
+/build/
+/dist/
+/.pnp/
+.pnp.js
+
+# Optional: Editor directories
+.idea/
+.vscode/
+
+# Optional: OS generated files
+.DS_Store
+Thumbs.db
