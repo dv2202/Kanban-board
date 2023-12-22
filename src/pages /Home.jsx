@@ -47,28 +47,28 @@ const Home = ({ tickets, users }) => {
   
     return (
       <div>
-        <div className="h-[20px] ">
-        <label>
-          Grouping:
-          <select value={selectedGroup} onChange={(e) => setSelectedGroup(e.target.value)}>
-            <option value="status">By Status</option>
-            <option value="user">By User</option>
-            <option value="priority">By Priority</option>
-          </select>
-        </label>
+        <div className="h-[70px] items-center flex ">
+                <label>
+                Grouping:
+                <select value={selectedGroup} onChange={(e) => setSelectedGroup(e.target.value)}>
+                    <option value="status">By Status</option>
+                    <option value="user">By User</option>
+                    <option value="priority">By Priority</option>
+                </select>
+                </label>
 
-        
-        <label>
-          Ordering:
-          <select >
-            <option value="priority">By Priority</option>
-          </select>
-        </label>
+                
+                <label>
+                Ordering:
+                <select >
+                    <option value="priority">By Priority</option>
+                </select>
+                </label>
         </div>
         
-        <div className="grid grid-cols-5 gap-[30px] w-97 mx-auto min-h-[92vh] p-10">
+        <div className="grid grid-cols-5 gap-[30px] w-97 mx-auto min-h-[92vh] p-10 bg-[#F4F5F8]">
             {groupData().map(group => (
-                <Card key={group.title} title={group.title} tickets={group.tickets} className="col-span-1" />
+                <Card key={group.title} title={group.title} tickets={group.tickets} users={users} className="col-span-1" />
             ))}
         </div>
 
