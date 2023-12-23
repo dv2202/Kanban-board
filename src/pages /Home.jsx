@@ -7,7 +7,10 @@ import { MdSunny } from "react-icons/md";
 import { useEffect } from "react";
 
 const Home = ({ tickets, users }) => {
-    const [selectedGroup, setSelectedGroup] = useState('status');
+  const [selectedGroup, setSelectedGroup] = useState(() => {
+    const storedGroup = localStorage.getItem("selectedGroup");
+    return storedGroup ? JSON.parse(storedGroup) : "status";
+  });
     const [showDropDown,setShowDropDown] = useState(true);
     const [showDark,setShowDark] = useState(false);
     const priorityTags = {
@@ -30,6 +33,11 @@ const Home = ({ tickets, users }) => {
         document.documentElement.classList.toggle('dark', showDark);
       }, [showDark]);
 
+      useEffect(() => {
+        localStorage.setItem("selectedGroup", JSON.stringify(selectedGroup));
+      }, [selectedGroup]);
+
+      
     const groupData = () => {
       switch (selectedGroup) {
         case 'status':
@@ -56,11 +64,26 @@ const Home = ({ tickets, users }) => {
         }));
       };
   
-    const groupByUser = () => {
-      return users.map(user => ({
-        title: user.name,
-        tickets: tickets.filter(ticket => ticket.userId === user.id),
-      }));
+      const groupByUser = () => {
+        const groupedByUser = {};
+        
+   
+        tickets.forEach(ticket => {
+            const { userId } = ticket;
+            const user = users.find(user => user.id === userId);
+            const userName = user ? user.name : "Unknown";
+    
+            if (!groupedByUser[userName]) {
+                groupedByUser[userName] = {
+                    title: userName,
+                    tickets: [],
+                };
+            }
+    
+            groupedByUser[userName].tickets.push(ticket);
+        });
+    
+        return Object.values(groupedByUser);
     };
   
     const groupByPriority = () => {

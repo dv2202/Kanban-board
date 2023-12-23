@@ -15,7 +15,8 @@ const Card = ({ title, tickets, users, selectedGroup }) => {
           ? { name: user.name, available: user.available }
           : { name: "Unknown", available: false };
       };
-      
+
+
       const renderPriorityBars = (priority) => {
             switch(priority){
                 case 1 :
