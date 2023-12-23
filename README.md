@@ -9,17 +9,19 @@ This project is a Kanban Board implemented using React, providing a visual and f
 Follow these steps to set up and run the project locally:
 
 1. **Clone the Repository:**
+   ```bash
    git clone https://github.com/your-username/kanban-board.git
    cd kanban-board
    ```
 
 2. **Install Dependencies:**
-
+   ```bash
    npm install
    ```
 
 3. **Run the Application:**
-   npm run start
+   ```bash
+   npm start
    ```
 
 
