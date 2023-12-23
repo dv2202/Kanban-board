@@ -1,6 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React,{useState} from "react";
 import Card from "../components/Card";
-import { MdOutlineKeyboardArrowDown, MdKeyboardArrowUp, IoMdMoon, MdSunny } from "react-icons/all";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowUp } from "react-icons/md";
+import { IoMdMoon } from "react-icons/io";
+import { MdSunny } from "react-icons/md";
+import { useEffect } from "react";
+
 
 const Home = ({ tickets, users }) => {
   const [selectedGroup, setSelectedGroup] = useState(() => {
