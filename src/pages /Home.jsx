@@ -75,15 +75,23 @@ const Home = ({ tickets, users }) => {
     }
   };
 
-  const groupByStatus = () => {
+ const groupByStatus = () => {
     const statusGroups = Array.from(new Set(tickets.map(ticket => ticket.status)));
     const additionalCategories = ['Done', 'Cancelled'];
     const updatedStatusGroups = [...statusGroups, ...additionalCategories];
-
-    return updatedStatusGroups.map(status => ({
+  
+    const groupedStatus = updatedStatusGroups.map(status => ({
       title: status,
       tickets: tickets.filter(ticket => ticket.status === status),
     }));
+  
+    const sortedGroups = groupedStatus.sort((a, b) => a.tickets.length - b.tickets.length);
+  
+    const finalGroups = sortedGroups.filter(group => group.title !== 'Done' && group.title !== 'Cancelled').concat(
+      sortedGroups.filter(group => group.title === 'Done' || group.title === 'Cancelled')
+    );
+  
+    return finalGroups;
   };
 
   const groupByUser = () => {
