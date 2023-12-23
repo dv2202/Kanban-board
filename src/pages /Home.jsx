@@ -12,7 +12,11 @@ const Home = ({ tickets, users }) => {
     return storedGroup ? JSON.parse(storedGroup) : "status";
   });
     const [showDropDown,setShowDropDown] = useState(true);
-    const [showDark,setShowDark] = useState(false);
+    const [showDark,setShowDark] = useState(()=>{
+      const storeTheme = localStorage.getItem("showDark");
+      return storeTheme ? JSON.parse(storeTheme) : false;
+    });
+
     const priorityTags = {
       4: 'Urgent',
       3: 'High',
@@ -37,7 +41,10 @@ const Home = ({ tickets, users }) => {
         localStorage.setItem("selectedGroup", JSON.stringify(selectedGroup));
       }, [selectedGroup]);
 
-      
+    useEffect(() => {
+        localStorage.setItem("showDark", JSON.stringify(showDark));
+      }, [showDark]);
+    
     const groupData = () => {
       switch (selectedGroup) {
         case 'status':
